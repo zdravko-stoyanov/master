@@ -6,15 +6,15 @@ class Task {
 	private int workingHours;
 
 	Task() {
-		this.nameOfTask = "Няма задача";
+		this.nameOfTask = "There is no current task";
 		this.workingHours = 0;
 	}
 	
 	Task (String nameOfTask, int workingHours){
-		if (nameOfTask!=null && nameOfTask!=""){
+		if (!nameOfTask.equals(null) && !nameOfTask.trim().equals("")){
 			this.nameOfTask = nameOfTask;
 		} else {
-			this.nameOfTask = "Няма задача";
+			this.nameOfTask = "There is no current task";
 		}
 		if (workingHours > 0){
 			this.workingHours = workingHours;
@@ -28,8 +28,10 @@ class Task {
 	}
 
 	public void setName(String name) {
-		if (name != null && name != "") {
+		if (!name.equals(null) && !name.trim().equals("")) {
 			this.nameOfTask = name;
+		} else {
+			this.nameOfTask = "There is no current task";
 		}
 	}
 

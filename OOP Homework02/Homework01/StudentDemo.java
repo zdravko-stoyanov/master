@@ -9,32 +9,32 @@ public class StudentDemo {
 	private static final int FIRST_YEAR_IN_COLLEGE = 1;
 
 	public static void main(String[] args) {
-		Student pesho = new Student("Пешо", "itTalents");
+		Student pesho = new Student("Pesho", "itTalents");
 		if (pesho.yearInCollege >= FIRST_YEAR_IN_COLLEGE && pesho.yearInCollege <= LAST_YEAR_IN_COLLEGE) {
-			System.out.println(pesho.name + " е " + pesho.yearInCollege + " година в университета.");
+			System.out.println(pesho.name + " is " + pesho.yearInCollege + " year in college.");
 		}
 		pesho.upYear();
 		if (pesho.isDegree == false && pesho.yearInCollege <= LAST_YEAR_IN_COLLEGE) {
-			System.out.println("Догодина " + pesho.name + " ще е " + pesho.yearInCollege + " година в университета.");
+			System.out.println("Next year " + pesho.name + " will be " + pesho.yearInCollege + " year in college.");
 		} else {
 			if (pesho.isDegree == false && pesho.yearInCollege == GRADUATED_COLLEGE) {
-				System.out.println("Тази година ще завърши.");
+				System.out.println("This year He/She will graduate.");
 			} else {
 				if (pesho.isDegree == true) {
-					System.out.println(pesho.name + " е завършил.");
+					System.out.println(pesho.name + " is graduated..");
 				}
 			}
 		}
 		if (pesho.age < MAX_AGE_FOR_SCHOLARSHIP && pesho.grade >= MIN_GRADE_FOR_SCHOLARSHIP) {
-			System.out.println(pesho.name + " има среден успех: " + pesho.grade
-					+ ". В такъв случай от стипендии ще вземе " + pesho.recieveScholarship(MIN_GRADE_FOR_SCHOLARSHIP, MAX_AGE_FOR_SCHOLARSHIP) + "лв.");
+			System.out.println(pesho.name + " has average grade: " + pesho.grade
+					+ ". In this case by scholarship He will take " + pesho.recieveScholarship(MIN_GRADE_FOR_SCHOLARSHIP, MAX_AGE_FOR_SCHOLARSHIP) + "лв.");
 		} else {
 			if (pesho.age >= MAX_AGE_FOR_SCHOLARSHIP) {
-				System.out.println(pesho.name + " няма да вземе стипендия, защото е чукнал тридесетака.");
+				System.out.println(pesho.name + " won't take scholarship, because he is over 30 years old.");
 			} else {
 				if (pesho.grade < MIN_GRADE_FOR_SCHOLARSHIP) {
 					System.out.println(
-							pesho.name + " няма да вземе стипендия, защото го е мързяло да учи и има нисък успех.");
+							pesho.name + " won't take scholarship, because his grade is under the minimum criteria for scholarship.");
 				}
 			}
 		}

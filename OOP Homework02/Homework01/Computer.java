@@ -26,7 +26,7 @@ public class Computer {
 		}
 		if (price < CHEAPEST_PC_IN_SHOP) {
 			this.price = CHEAPEST_PC_IN_SHOP;
-			System.out.println("Най-евтиния компютър, който се продава е 300 лева. ;)");
+			System.out.println("The cheapest PC in shop is 300 BGN. ;)");
 		} else {
 			this.price = price;
 		}

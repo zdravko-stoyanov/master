@@ -17,7 +17,7 @@ public class StudentsGroup {
 	StudentsGroup(String subject) {
 		this();
 		if (subject.length() < MIN_LENGTH_OF_SUBJECT_NAME) {
-			this.groupSubject = "Странна специалност";
+			this.groupSubject = "Strange subject";
 		} else {
 			this.groupSubject = subject;
 		}
@@ -49,14 +49,14 @@ public class StudentsGroup {
 				name = students[index].name;
 			}
 		}
-		System.out.println(name + " има най-висок успех - " + bestGrade);
+		System.out.println(name + " has highest grade - " + bestGrade);
 	}
 
 	void printStudentsInGroup() {
 		for (int index = 0; index < students.length - freePlaces; index++) {
 			double scholarship = students[index].recieveScholarship(MIN_GRADE_FOR_SCHOLARSHIP, SCHOLARSHIP_AMOUNT);
-			System.out.println(students[index].name + ", " + students[index].age + " години, група: "
-					+ students[index].subject + ", успех: " + students[index].grade + ", стипендия: " + scholarship);
+			System.out.println(students[index].name + ", " + students[index].age + " years, group: "
+					+ students[index].subject + ", grade: " + students[index].grade + ", scholarship: " + scholarship);
 		}
 	}
 }

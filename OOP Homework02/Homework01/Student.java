@@ -1,6 +1,7 @@
 package Homework01;
 
 public class Student {
+	private static final int MAX_AGE_FOR_SCHOLARSHIP = 30;
 	private static final int GRADUATED_COLLEGE = 5;
 	private static final int FIRST_YEAR_IN_COLLEGE = 1;
 	private static final int LAST_YEAR_IN_COLLEGE = 4;
@@ -27,7 +28,7 @@ public class Student {
 	Student(String name, String subject) {
 		this();
 		if (name.length() < MIN_NAME_LENGTH) {
-			this.name = "Неизвестен";
+			this.name = "No name";
 		} else {
 			this.name = name;
 		}
@@ -36,8 +37,8 @@ public class Student {
 
 	Student(String name, String subject, double grade) {
 		this(name, subject);
-		if (name.length() < MIN_NAME_LENGTH) {
-			this.name = "Неизвестен";
+		if (name.length() < MIN_NAME_LENGTH || name.equals(null)) {
+			this.name = "No name";
 		} else {
 			this.name = name;
 		}
@@ -50,7 +51,11 @@ public class Student {
 				this.grade = grade;
 			}
 		}
-		this.subject = subject;
+		if (subject.length() < MIN_NAME_LENGTH || subject.equals(null)) {
+			this.subject = "No subject";
+		} else {
+			this.subject = subject;
+		}
 	}
 
 	Student(String name, String subject, double grade, int age, int yearInCollege) {
@@ -98,7 +103,7 @@ public class Student {
 	}
 
 	double recieveScholarship(double minGrade, double amount) {
-		if (this.age < MIN_AGE_FOR_COLLEGE && this.grade >= minGrade) {
+		if (this.age > MIN_AGE_FOR_COLLEGE && this.age <= MAX_AGE_FOR_SCHOLARSHIP && this.grade >= minGrade) {
 			return money += amount;
 		}
 		return money;

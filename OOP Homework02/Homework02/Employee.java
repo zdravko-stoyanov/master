@@ -6,7 +6,7 @@ class Employee {
 	private Task currentTask;
 	private int hoursLeft;
 
-	 Employee(String name) {
+	Employee(String name) {
 		if (name != null && name != "") {
 			this.name = name;
 		}
@@ -24,22 +24,23 @@ class Employee {
 			}
 		}
 	}
-	
-	void showReport(){
-		System.out.println("Днес " + this.name + " има работно време - " + hoursLeft + " часа.");
-		System.out.println(this.name + " има задача " + currentTask.getName() + " - " + currentTask.getWorkingHours() + " часа.");
+
+	void showReport() {
+		System.out.println("Today " + this.name + " has work time - " + hoursLeft + " hours.");
+		System.out.println(
+				this.name + " has task " + currentTask.getName() + " - " + currentTask.getWorkingHours() + " hours.");
 		work();
-		System.out.println("Остават му още " + hoursLeft + " работни часа.");
-		if (currentTask.getWorkingHours()>1){
-		System.out.println("Необходими са още " + currentTask.getWorkingHours() + " часа за да се изпълни задачата.");
-		System.out.println();
+		System.out.println("There is still " + hoursLeft + " more work hours today.");
+		if (currentTask.getWorkingHours() > 1) {
+			System.out.println("To complete the task he should work " + currentTask.getWorkingHours() + " more hours.");
+			System.out.println();
 		} else {
-			if (currentTask.getWorkingHours()==1){
-				System.out.println("Необходим e още " + currentTask.getWorkingHours() + " час за да се изпълни задачата.");
+			if (currentTask.getWorkingHours() == 1) {
+				System.out.println("Needs " + currentTask.getWorkingHours() + " more hour to complete the task.");
 				System.out.println();
 			} else {
-				if (currentTask.getWorkingHours()== 0){
-					System.out.println("Задачата " + currentTask.getName() + " е изпълнена.");
+				if (currentTask.getWorkingHours() == 0) {
+					System.out.println("The task " + currentTask.getName() + " is completed.");
 					System.out.println();
 				}
 			}
