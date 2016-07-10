@@ -1,5 +1,5 @@
 
-public class Employee extends Person {
+class Employee extends Person {
 
 	private static final int MIN_AGE_TO_WORK = 18;
 	private static final double COEFICIENT_FOR_OVERTIME = 1.5;

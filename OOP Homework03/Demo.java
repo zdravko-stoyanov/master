@@ -1,5 +1,5 @@
 
-public class Demo {
+class Demo {
 
 	private static final int TWO_HOURS_OVERTIME = 10;
 
