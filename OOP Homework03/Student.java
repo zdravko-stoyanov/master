@@ -9,7 +9,15 @@ class Student extends Person {
 	}
 	
 	protected void showStudentInfo(){
-		showPersonInfo();
+		System.out.print(" name: " + getName());
+		System.out.print(", age: " + getAge());
+		if (this.isMale() == true) {
+			System.out.print(", gender: Male");
+		} else {
+			if (this.isMale() == false) {
+				System.out.print(", gender: Famale");
+			}
+		}
 		System.out.println(", grade: " + getScore());
 	}
 

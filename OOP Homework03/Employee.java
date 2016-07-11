@@ -26,7 +26,15 @@ class Employee extends Person {
 	}
 
 	protected void showEmployeeInfo() {
-		showPersonInfo();
+		System.out.print(" name: " + getName());
+		System.out.print(", age: " + getAge());
+		if (this.isMale() == true) {
+			System.out.print(", gender: Male");
+		} else {
+			if (this.isMale() == false) {
+				System.out.print(", gender: Famale");
+			}
+		}
 		System.out.println(", daily salary: " + daySalary + " BGN.");
 	}
 

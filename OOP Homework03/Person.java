@@ -11,8 +11,8 @@ class Person {
 	}
 
 	protected void showPersonInfo() {
-		System.out.print("name: " + name);
-		System.out.print(", age: " + age);
+		System.out.print(" name: " + this.name);
+		System.out.print(", age: " + this.age);
 		if (this.isMale == true) {
 			System.out.print(", gender: Male");
 		} else {
@@ -20,7 +20,7 @@ class Person {
 				System.out.print(", gender: Famale");
 			}
 		}
-
+		System.out.println();
 	}
 
 	public String getName() {
