@@ -35,7 +35,12 @@ class Employee extends Person {
 				System.out.print(", gender: Famale");
 			}
 		}
-		System.out.println(", daily salary: " + daySalary + " BGN.");
+		if (getAge() >= 18) {
+			System.out.println(", daily salary: " + daySalary + " BGN.");
+		} else {
+			daySalary = 0;
+			System.out.println(", daily salary: " + daySalary + " BGN.");
+		}
 	}
 
 	public double getDaySalary() {
