@@ -26,7 +26,21 @@ class Employee extends Person {
 	}
 
 	protected void showEmployeeInfo() {
-		System.out.print(" name: " + getName());
+
+		this.showPersonInfo();
+		if (getAge() >= 18) {
+			System.out.println(", daily salary: " + daySalary + " BGN.");
+		} else {
+			daySalary = 0;
+			System.out.println(", daily salary: " + daySalary + " BGN.");
+		}
+	}
+
+	// Make override to remove syso new line at the end of the method from
+	// original showPersonInfo()
+	@Override
+	protected void showPersonInfo() {
+		System.out.print("Name: " + getName());
 		System.out.print(", age: " + getAge());
 		if (this.isMale() == true) {
 			System.out.print(", gender: Male");
@@ -34,12 +48,6 @@ class Employee extends Person {
 			if (this.isMale() == false) {
 				System.out.print(", gender: Famale");
 			}
-		}
-		if (getAge() >= 18) {
-			System.out.println(", daily salary: " + daySalary + " BGN.");
-		} else {
-			daySalary = 0;
-			System.out.println(", daily salary: " + daySalary + " BGN.");
 		}
 	}
 

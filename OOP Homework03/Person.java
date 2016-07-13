@@ -5,13 +5,14 @@ class Person {
 	private boolean isMale;
 
 	public Person(String name, int age, boolean isMale) {
+	// No need to check about the correct inputing, because the check was made in the Setters.	
 		setName(name);
 		setAge(age);
 		setMale(isMale);
 	}
 
 	protected void showPersonInfo() {
-		System.out.print(" name: " + this.name);
+		System.out.print("Name: " + this.name);
 		System.out.print(", age: " + this.age);
 		if (this.isMale == true) {
 			System.out.print(", gender: Male");
