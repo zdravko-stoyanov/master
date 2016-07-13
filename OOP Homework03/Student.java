@@ -2,7 +2,7 @@
 class Student extends Person {
 	private double score;
 
-	public Student(String name, int age, boolean isMale, double score) {
+	Student(String name, int age, boolean isMale, double score) {
 		super(name, age, isMale);
 		setScore(score);
 	}
@@ -28,11 +28,11 @@ class Student extends Person {
 		}
 	}
 
-	public double getScore() {
+	double getScore() {
 		return score;
 	}
 
-	public void setScore(double score) {
+	void setScore(double score) {
 		if (score >= 2 && score <= 6) {
 			this.score = score;
 		} else {
@@ -45,5 +45,4 @@ class Student extends Person {
 			}
 		}
 	}
-
 }
