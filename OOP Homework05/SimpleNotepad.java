@@ -1,9 +1,6 @@
 
 public class SimpleNotepad implements INotepad {
 
-	private static final int FIRST_PAGE = 0;
-	private static final int EMPTY_STRING = 0;
-	private static final int PAGES_COUNT = 20;
 	private Page[] pages;
 
 	SimpleNotepad() {
@@ -23,16 +20,25 @@ public class SimpleNotepad implements INotepad {
 		// pageNumber-=1 za da moje da se dobavqt stranici ot 1 do 20, a ne ot 0
 		// do 19
 		pageNumber -= 1;
-		pages[pageNumber] = new Page();
+		if (pages[pageNumber] == null) {
+			pages[pageNumber] = new Page();
+		}
 		if (pageNumber >= EMPTY_STRING && pageNumber <= PAGES_COUNT && text != null
 				&& text.trim().length() > EMPTY_STRING) {
-			pages[pageNumber].addText(text);
+			pages[pageNumber].addText(" " + text);
 		}
 	}
 
-	public void addText(int pageNumber, String title, String text) {
+	void addText(int pageNumber, String title, String text) {
+		if (pageNumber < 1) {
+			pageNumber = 1;
+		} else {
+			if (pageNumber > 20) {
+				pageNumber = 20;
+			}
+		}
 		this.addText(pageNumber, text);
-		pageNumber-=1;
+		pageNumber -= 1;
 		if (title != null && title.trim().length() > EMPTY_STRING) {
 			pages[pageNumber].changeTitle(title);
 		}
@@ -55,22 +61,25 @@ public class SimpleNotepad implements INotepad {
 		if (pageNumber >= FIRST_PAGE && pageNumber <= PAGES_COUNT) {
 			pages[pageNumber].deleteText();
 		}
-
 	}
 
 	public boolean searchWord(String word) {
 		if (word != null && word.trim().length() > EMPTY_STRING) {
 			for (Page page : this.pages) {
-				if (page.searchWord(word)) {
+				if (page != null && page.searchWord(word)) {
+					System.out.println("Думата \"" + word + "\" я има в текста ");
 					return true;
 				}
 			}
 		}
+		System.out.println("Думата \"" + word + "\" я няма в текста ");
 		return false;
 	}
 
-	public void printAllPagesWithDigits() {
-		System.out.println("Всички страници, които съдържат цифри са:");
+	void printAllPagesWithDigits() {
+		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("||Всички страници, които съдържат цифри са:||");
+		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||");
 		for (int pageIndex = FIRST_PAGE; pageIndex < PAGES_COUNT; pageIndex++) {
 			if (this.pages[pageIndex] != null) {
 				Page page = this.pages[pageIndex];
@@ -91,9 +100,9 @@ public class SimpleNotepad implements INotepad {
 
 	private void printPage(int pageIndex, Page page) {
 		if (pages[pageIndex] != null) {
-			System.out.println("        *Page " + (pageIndex + 1) + pageIndex);
+			System.out.println("        *Page " + (pageIndex + 1) + "*");
 			System.out.println("    <" + pages[pageIndex].viewPage());
-			System.out.println(Page.NEW_LINE);
+			System.out.println();
 		}
 
 	}

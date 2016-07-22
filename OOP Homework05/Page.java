@@ -3,7 +3,7 @@ class Page {
 	private static final int MAX_TITLE_LENGTH = 20;
 	private static final char LAST_DIGIT = '9';
 	private static final char FIRST_DIGIT = '0';
-	public static final String NEW_LINE = "\n";
+	static final String NEW_LINE = "\n";
 	private String title;
 	private String text;
 
@@ -17,7 +17,7 @@ class Page {
 		setTitle(title);
 	}
 
-	public void changeTitle(String title) {
+	void changeTitle(String title) {
 		if (title != null && title.trim().length() > 0 && title.trim().length() <= MAX_TITLE_LENGTH) {
 			this.title = title;
 		} else {
@@ -25,7 +25,7 @@ class Page {
 		}
 	}
 
-	public void addText(String text) {
+	void addText(String text) {
 		if (text != null && text.trim().length() > 0) {
 			setText(this.text += text);
 		} else {
@@ -33,13 +33,12 @@ class Page {
 		}
 	}
 
-	public void deleteText() {
+	void deleteText() {
 		this.text = "";
 	}
 
 	String viewPage() {
-		if (this.title != null && this.title.trim().length() > 0 && this.title.trim().length() <= MAX_TITLE_LENGTH
-				&& this.text != null) {
+		if (this.title.trim().length() > 0 && this.title.trim().length() <= MAX_TITLE_LENGTH) {
 			String page = this.title + ">" + NEW_LINE + "----------------------------" + NEW_LINE + this.text;
 			return page;
 		}
@@ -49,20 +48,11 @@ class Page {
 		return page;
 	}
 
-	public boolean searchWord(String word) {
-		if (word != null && word.trim().length() > 0) {
-			String text = this.title + " " + this.text;
-			String[] words = text.split(" ");
-			for (int index = 0; index < text.length(); index++) {
-				if (word.equalsIgnoreCase(words[index])) {
-					return true;
-				}
-			}
+		boolean searchWord(String word) {
+			return (this.text.contains(word));
 		}
-		return false;
-	}
 
-	public boolean containsDigits() {
+		boolean containsDigits() {
 		String text = this.title + " " + this.text;
 		for (int index = 0; index < text.length(); index++) {
 			if (text.charAt(index) >= FIRST_DIGIT && text.charAt(index) <= LAST_DIGIT) {
@@ -72,21 +62,21 @@ class Page {
 		return false;
 	}
 
-	public String getTitle() {
+	String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	void setTitle(String title) {
 		if (title != null && title.trim().length() > 0) {
 			this.title = title;
 		}
 	}
 
-	public String getText() {
+	String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
+	void setText(String text) {
 		if (text != null && text.trim().length() > 0) {
 			this.text = text;
 		}
