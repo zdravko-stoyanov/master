@@ -9,4 +9,5 @@ public interface INotepad {
 	void deleteText(int pageNumber);
 	void viewAllPages();
 	boolean searchWord(String word);
+	void printAllPagesWithDigits();
 }

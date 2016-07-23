@@ -1,9 +1,8 @@
 
-public class SecuredNotepad implements INotepad {
+public class SecuredNotepad extends Notepad implements INotepad {
 	private static final int MAXIMUM_PASSWORD_LENGTH = 16;
 	private static final int MINIMUM_PASSWORD_LENGTH = 4;
 	private String password;
-	private Page[] pages;
 	private boolean isCorrect;
 
 	SecuredNotepad(String password) {
@@ -13,7 +12,8 @@ public class SecuredNotepad implements INotepad {
 			System.out.println("Създаден е защитен бележник с " + PAGES_COUNT + " страници.");
 		} else {
 			this.pages = null;
-			System.out.println("Не може да бъде създаден бележник");
+			System.err.println("Не може да бъде създаден бележник. Вероятно паролата не отговяря на изискванията \n 5-15 символа, малка буква, голяма буква и цифра");
+			
 		}
 	}
 
@@ -54,6 +54,7 @@ public class SecuredNotepad implements INotepad {
 				}
 			}
 			this.addText(pageNumber, text, password);
+			System.out.println("Беше добавен следния текст: \"" + text + " \" - на " + pageNumber + " страница.");
 			pageNumber -= 1;
 			if (pages[pageNumber] != null && title != null && title.trim().length() > EMPTY_STRING) {
 				pages[pageNumber].changeTitle(title);
@@ -133,12 +134,31 @@ public class SecuredNotepad implements INotepad {
 
 	private void setPassword(String password) {
 		if (password != null && password.trim().length() > MINIMUM_PASSWORD_LENGTH
-				&& password.trim().length() < MAXIMUM_PASSWORD_LENGTH) {
+				&& password.trim().length() < MAXIMUM_PASSWORD_LENGTH ) {
+			int countDigits = 0;
+			int countUpperCase = 0;
+			int countLowerCase = 0;
+			for (int index=0; index<password.length(); index++){
+				//Проверка дали съдържа цифра
+				if (password.charAt(index)>='0' && password.charAt(index)<='9'){
+					countDigits++;
+				}
+				//Проверка дали съдържа главна буква (латиница или кирилица)
+				if ((password.charAt(index)>='A' && password.charAt(index)<='Z') || (password.charAt(index)>='А' && password.charAt(index)<='Я')){
+					countUpperCase++;
+				}
+				//Проверка дали съдържа малка буква (латиница или кирилица)
+				if ((password.charAt(index)>='a' && password.charAt(index)<='z') || (password.charAt(index)>='а' && password.charAt(index)<='я')){
+					countLowerCase++;
+				}
+			}
+			if (countDigits>0 && countUpperCase>0 && countLowerCase>0){
 			this.password = password;
 			isCorrect = true;
+			}
 		} else {
 			isCorrect = false;
-			System.out.println("ПАРОЛАТА ТРЯБВА ДА Е МЕЖДУ /5-15/ СИМВОЛА!!!");
+			System.out.println("Изисква се силна парола /5-15 символа/ малка буква, голяма буква, цифра!!!");
 		}
 	}
 
@@ -151,7 +171,7 @@ public class SecuredNotepad implements INotepad {
 	boolean searchWord(String word, String password) {
 		if (password.equals(this.password)) {
 			if (word != null && word.trim().length() > 0) {
-				for (int pageIndex = 0; pageIndex < PAGES_COUNT; pageIndex++) {
+				for (int pageIndex = FIRST_PAGE; pageIndex < PAGES_COUNT; pageIndex++) {
 					if (pages[pageIndex] != null && this.pages[pageIndex].getText().contains(word)) {
 						System.out.println("Думата \"" + word + "\" е намерена в бележника.");
 						return true;
@@ -163,6 +183,29 @@ public class SecuredNotepad implements INotepad {
 		}
 		System.out.println("Думата \"" + word + "\" НЕ е намерена в бележника.");
 		return false;
+	}
+
+	@Override
+	public void printAllPagesWithDigits() {
+		System.err.println("За да проверите в кои страници има цифри трябва въведете валидна парола");
+	}
+
+	void printAllPagesWithDigits(String password) {
+		if (password.equals(this.password)) {
+			System.out.println("|||||||||||||||||||||||||||||||||||||||||||||");
+			System.out.println("||Всички страници, които съдържат цифри са:||");
+			System.out.println("|||||||||||||||||||||||||||||||||||||||||||||");
+			for (int pageIndex = FIRST_PAGE; pageIndex < PAGES_COUNT; pageIndex++) {
+				if (this.pages[pageIndex] != null) {
+					Page page = this.pages[pageIndex];
+					if (page.containsDigits()) {
+						this.printPage(pageIndex, page, password);
+					}
+				}
+			}
+		} else {
+			printAllPagesWithDigits();
+		}
 	}
 
 }

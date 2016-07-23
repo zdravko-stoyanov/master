@@ -1,8 +1,6 @@
 
-public class SimpleNotepad implements INotepad {
-
-	private Page[] pages;
-
+public class SimpleNotepad extends Notepad implements INotepad {
+	
 	SimpleNotepad() {
 		this.pages = new Page[PAGES_COUNT];
 		System.out.println("Създаден е бележник с " + PAGES_COUNT + " страници.");
@@ -26,6 +24,7 @@ public class SimpleNotepad implements INotepad {
 		if (pageNumber >= EMPTY_STRING && pageNumber <= PAGES_COUNT && text != null
 				&& text.trim().length() > EMPTY_STRING) {
 			pages[pageNumber].addText(" " + text);
+			System.out.println("Беше добавен следния текст: \"" + text + " \" - на " + (pageNumber+1) + " страница.");
 		}
 	}
 
@@ -76,7 +75,7 @@ public class SimpleNotepad implements INotepad {
 		return false;
 	}
 
-	void printAllPagesWithDigits() {
+	public void printAllPagesWithDigits() {
 		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||");
 		System.out.println("||Всички страници, които съдържат цифри са:||");
 		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||");
